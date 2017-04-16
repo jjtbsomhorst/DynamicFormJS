@@ -1,0 +1,120 @@
+{
+    "SubmitUrl": "",
+    "Fields":[
+            {
+                "id": "tekstveld",
+                "type": "text",
+                "placeHolder": "",
+                "defaultValue": "",
+                "required": true,
+                "label":"Naam",
+                "name": "tekstveld"
+            },
+            {
+                "id": "amount",
+                "type": "number",
+                "placeHolder": "aantal",
+                "label": "Aantal",
+                "defaultValue": 5
+            },
+            {
+                "id": "unitprice",
+                "type": "number",
+                "placeHolder": "stukprijs",
+                "label": "Prijs per stuk",
+                "defaultValue": 200
+            },
+
+            {
+                "id": "totalAmount",
+                "type": "number",
+                "placeHolder": "",
+                "defaultValue": 0,
+                "required": false,
+                "label":"Totaal prijs",
+                "name": "nummervelde",
+                "computed": {
+                    "value": "{{amount}} * {{unitprice}}"
+                }
+            },
+            {
+                "id": "checkboxveld",
+                "name": "checkboxveld",
+                "type": "checkbox",
+                "defaultValue": "1",
+                "label":"Keuze!!", 
+                "options": [
+                        {
+                        "key": 1,
+                        "value": "1"},
+                        {
+                        "key": 2,
+                        "value": "2"
+                        }]
+            },
+            {
+                "id": "dropdownveld",
+                "name": "dropdownveld",
+                "type": "dropdown",
+                "defaultValue": "1",
+                "label":"Keuze!!", 
+                "options": [
+                        {
+                        "key": 1,
+                        "value": "1"},
+                        {
+                        "key": 2,
+                        "value": "2"
+                        }]
+            },     
+            {
+                "id": "radiobutton",
+                "name": "radiobutton",
+                "type": "radiobutton",
+                "defaultValue": "1",
+                "label":"Keuze!!", 
+                "options": [
+                        {
+                        "key": 1,
+                        "value": "1"},
+                        {
+                        "key": 2,
+                        "value": "2"
+                        }]
+            },   
+            {
+                "id": "multiselect",
+                "name": "multiselect",
+                "type": "multiselect",
+                "defaultValue": "1",
+                "label":"Keuze!!", 
+                "options": [
+                        {
+                        "key": 1,
+                        "value": "1"},
+                        {
+                        "key": 2,
+                        "value": "2"
+                        }]
+            },                               
+
+            {
+                "id": "tekstveld_2",
+                "name": "tekstveld2",
+                "label": "tekstveld2",
+                "type": "text",
+                "defaultValue": "",
+                "placeholder": "vul een omschrijving in !!",
+                "rendered": {
+                    "field": "multiselect",
+                    "value": "2"
+                }
+            },
+
+            {
+                "id": "submitButton",
+                "type": "submit",
+                "label": "Druk mij"
+            }
+    ]
+}

@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <script src="formReader.js"></script>
+        <script src="Guid.js"></script>
+        <script src="formulaParser.js"></script>
+    </head>
+    <body>
+        <div id="formContainer">
+
+        </div>
+
+    <script>
+        console.log("stuff");
+        $( document ).ready(function(){
+            console.log("done!!");
+            $.ajax({
+                url: 'form.json',
+                success: function(data){
+                    var formReader = new FormReader(data);
+                    formReader.load('formContainer');
+                },
+                error: function(){
+                    console.log('could not load the stuffs');
+                }
+            });
+
+            
+        });
+    </script>
+
+    </body>
+</html>
