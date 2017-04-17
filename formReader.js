@@ -1,3 +1,13 @@
+/**
+ * 
+ * TODO: 
+ * Lots of stuff such 
+ * as retrieval of data from api for dropdowns etc
+ * computed (default values) for dropdowns etc
+ * type ahead structures
+ * validations
+ */
+
 function FormReader(formDefinition){
     
     this.formDefinition = formDefinition;
@@ -10,6 +20,7 @@ function FormReader(formDefinition){
     this.parser = new formulaParser();
     this.inputNodes = new Map();
     this.changeListeners = [];
+    this.typeaheadFields = [];
 }
 
 FormReader.prototype.load = function(domNode){
@@ -49,8 +60,23 @@ FormReader.prototype.load = function(domNode){
     rootNode.appendChild(this.formNode);
     this.parseRenderLogic();
     this.parseComputedValues();
-    
+    this.parseTypeAheadFields();
     $(this.formNode).css({"display":""});
+}
+
+FormReader.prototype.parseTypeAheadFields = function(){
+    for(var i = 0; i < this.typeaheadFields.length;i++){
+        var fieldDef = this.typeaheadFields[i];
+        if($("#"+fieldDef.id).length == 1){
+            var inputNode = $("#"+fieldDef.id)[0];
+            $(inputNode).remoteList({
+                minLength: 1,
+                source: function(value, response){
+		            response(["Denita Harvison","Talia Abbot","Sharla Pope","Jeannine Guerro","Danelle Contreras","Lindsay Burden","Adalberto Beene","Kelsie Horrocks","Shonta Almaraz","Vickie Rubenstein","Neomi Lamon","Albertha Utsey","Bessie Tindle","Loretta Gabrielli","Myrl Leatham","Micah Locker","Ryann Wike","Verla Buskirk","Jaleesa Fincham","Leeann Clepper","Gabriella Wolff","Leta Symonds","Pura Twilley","Larisa Mulhall","Clemencia Mathews","Dakota Blackman","Trula Bechtol","Syble Dane","Lesa Larochelle","Ebonie Giffin","Letha Atterberry","Lanette Pohl","Daniell Shellenbarger","Latonia Lamp","Adrianne Calle","Ethelene Sciacca","Emmie Luttrell","Johnetta Leyendecker","Cecilia Summerall","Marvella Prue","Maisha Brick","Elenore Tolliver","Francine Hutton","Patrina Hevey","Bess Canney","Kecia Keef","Steve Franks","Jacqulyn Fullenkamp","Silvia Bartolo","Sachiko Heckathorn"]);
+	            }
+            });
+        }
+    }
 }
 
 FormReader.prototype.parseComputedValues = function(){
@@ -131,6 +157,8 @@ FormReader.prototype.generateInputSelector = function(fieldDef){
             }
         
             inputContainer.appendChild(cbNode);
+
+
 
 
             rowNode.appendChild(labelContainer);
@@ -228,7 +256,9 @@ FormReader.prototype.generateInputType = function(fieldDef){
         $(inputNode).val(fieldDef.defaultValue);
     }
     
-
+    if(fieldDef.hasOwnProperty('typeahead') && fieldDef.typeahead == true){
+        this.typeaheadFields.push(fieldDef);
+    }
 
     inputContainer.appendChild(inputNode);
     rowNode.appendChild(inputContainer);

@@ -103,6 +103,8 @@
                 "name": "tekstveld2",
                 "label": "tekstveld2",
                 "type": "text",
+                "typeahead": true,
+                "limit": 3,
                 "defaultValue": "",
                 "placeholder": "vul een omschrijving in !!",
                 "rendered": {
